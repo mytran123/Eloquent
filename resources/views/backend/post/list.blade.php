@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+<a type="button" class="btn btn-primary" href="{{route('posts.create')}}">Thêm mới</a>
     <table border="1px">
         <thead>
             <tr>
@@ -22,8 +23,20 @@
             <tr>
                 <td>{{$post->id}}</td>
                 <td>{{$post->title}}</td>
-                <td>{{$post->content}}</td>
+{{--                <td>{{$post->content}}</td>--}}
+
+                <td>
+                    @if(count($post->categories) > 0)
+                        @foreach($post->categories as $category)
+                            <p>{{$category->name}}</p>
+                        @endforeach
+                    @else
+                        <p>Chưa phân loại</p>
+                    @endif
+                </td>
+
                 <td>{{$post->user->name}}</td>
+                <td><a href="{{route('posts.edit', $post->id)}}">Update</a></td>
             </tr>
         @endforeach
         </tbody>
