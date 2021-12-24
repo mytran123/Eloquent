@@ -25,13 +25,13 @@ class PostController extends Controller
         return view("backend.post.list", compact("posts"));
     }
 
-    public function create()
+    public function create() //showFormCreate
     {
         $categories = $this->categoryRepository->getAll();
         return view("backend.post.create", compact("categories"));
     }
 
-    public function store(PostRequest $request)
+    public function store(PostRequest $request) //create
     {
 //        $request->validate([
 //            "title" => "required | max:20 | min:6",
@@ -44,7 +44,13 @@ class PostController extends Controller
         return redirect()->route("posts.index");
     }
 
-    public function edit($id)
+    public function show($id) //showDetail
+    {
+        $post = $this->postRepository->getById($id);
+        return view("backend.post.detail", compact("post"));
+    }
+
+    public function edit($id) //showFormUpdate
     {
         $post = $this->postRepository->getById($id);
         $categories = $this->categoryRepository->getAll();
@@ -57,6 +63,13 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->update($data);
         $post->categories()->sync($request->category);
+        return redirect()->route("posts.index");
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->delete();
         return redirect()->route("posts.index");
     }
 }

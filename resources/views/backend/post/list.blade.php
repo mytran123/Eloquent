@@ -16,6 +16,7 @@
                 <th>Title</th>
                 <th>Content</th>
                 <th>User</th>
+                <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +37,10 @@
                 </td>
 
                 <td>{{$post->user->name}}</td>
-                <td><a href="{{route('posts.edit', $post->id)}}">Update</a></td>
+                <td><a href="{{route('posts.show', $post->id)}}" type="button">Detail</a></td>
+                <td><a href="{{route('posts.edit', $post->id)}}" type="button">Update</a></td>
+                <td><a onclick="confirm('Are you sure?')" href="{{ route('posts.destroy',$post->id) }}" type="button">Delete</a></td>
+
             </tr>
         @endforeach
         </tbody>

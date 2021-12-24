@@ -14,7 +14,7 @@
         @error('title')
             <p style="color: red" class="text text-danger">{{$message}}</p>
         @enderror
-    <input stype="text" name="content" placeholder="Nội dung" value="{{old('content')}}">
+    <input type="text" name="content" placeholder="Nội dung" value="{{old('content')}}">
         @error('content')
             <p style="color: red" class="text text-danger">{{$message}}</p>
         @enderror
