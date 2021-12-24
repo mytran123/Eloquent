@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route("admin.showFormLogin");
 });
 
 Route::prefix('users')->group(function () {
@@ -36,3 +37,7 @@ Route::prefix('posts')->group(function () {
     Route::post('/{id}/update',[PostController::class,"update"])->name("posts.update");
     Route::get('/{id}/delete',[PostController::class,"destroy"])->name("posts.destroy");
 });
+
+Route::get('/login',[AuthController::class,"showFormLogin"])->name("admin.showFormLogin");
+Route::post('/login',[AuthController::class,"login"])->name("admin.login");
+Route::get('/logout',[AuthController::class,"logout"])->name("admin.logout");

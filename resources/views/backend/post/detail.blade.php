@@ -14,11 +14,13 @@
 
     <input type="text" name="content" placeholder="Nội dung" value="{{$post->content}}">
 
-    <select name="" id="" value="{{$post->user_id}}">
-        @foreach(\App\Models\User::all() as $user)
-            <option value="{{$user->id}}">{{$user->name}}</option>
-        @endforeach
-    </select>
+    <input type="text" name="user_id" placeholder="ID user" value="{{$post->user->name}}">
+
+{{--    <select name="" id="" value="{{$post->user_id}}">--}}
+{{--        @foreach(\App\Models\User::all() as $user)--}}
+{{--            <option value="{{$user->id}}">{{$user->name}}</option>--}}
+{{--        @endforeach--}}
+{{--    </select>--}}
 
     <a href="{{route('posts.index')}}" type="button">Quay lại</a>
 </form>
